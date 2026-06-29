@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Food Calculator | Toolbox</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
+h1{color:#1565c0}
+.card{background:white;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+input,select,button{padding:10px;margin:8px 0;width:100%;max-width:320px}
+button{background:#1565c0;color:white;border:none;border-radius:5px;cursor:pointer}
+.result{font-size:20px;font-weight:bold;margin-top:20px}
+a{color:#1565c0;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+
+<h1>Dog Food Calculator</h1>
+
+<p>Estimate how much dry dog food your dog may need each day.</p>
+
+<div class="card">
+<label>Dog weight in pounds</label><br>
+<input type="number" id="weight" min="1" placeholder="Example: 40"><br>
+
+<label>Activity level</label><br>
+<select id="activity">
+<option value="low">Low activity</option>
+<option value="normal" selected>Normal activity</option>
+<option value="high">High activity</option>
+</select><br>
+
+<button onclick="calculateFood()">Calculate</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<div class="card">
+<h2>Important note</h2>
+<p>This is only a general estimate. Your dog's age, breed, health, food brand, and calorie needs can change the correct amount. Always check your dog food label or ask your veterinarian.</p>
+</div>
+
+<p><a href="index.html">← Back to Pet Tools</a></p>
+
+<script>
+function calculateFood(){
+  const weight = parseFloat(document.getElementById("weight").value);
+  const activity = document.getElementById("activity").value;
+  const result = document.getElementById("result");
+
+  if(isNaN(weight) || weight <= 0){
+    result.textContent = "Please enter a valid dog weight.";
+    return;
+  }
+
+  let cups = weight * 0.03;
+
+  if(activity === "low"){
+    cups *= 0.85;
+  } else if(activity === "high"){
+    cups *= 1.2;
+  }
+
+  result.textContent = "Estimated daily food: " + cups.toFixed(1) + " cups per day";
+}
+</script>
+
+</body>
+</html>
