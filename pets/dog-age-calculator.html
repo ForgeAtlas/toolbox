@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Age Calculator | Toolbox</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
+h1{color:#1565c0}
+.card{background:white;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+input,select,button{padding:10px;margin:8px 0;width:100%;max-width:300px}
+button{background:#1565c0;color:white;border:none;border-radius:5px;cursor:pointer}
+.result{font-size:20px;font-weight:bold;margin-top:20px}
+a{color:#1565c0;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+
+<h1>Dog Age Calculator</h1>
+
+<p>Estimate your dog's age in human years.</p>
+
+<div class="card">
+<label>Dog age in years</label><br>
+<input type="number" id="dogAge" min="0" step="0.1" placeholder="Example: 5">
+<br>
+<button onclick="calculateDogAge()">Calculate</button>
+<div class="result" id="result"></div>
+</div>
+
+<p><a href="index.html">← Back to Pet Tools</a></p>
+
+<script>
+function calculateDogAge(){
+  const age = parseFloat(document.getElementById("dogAge").value);
+  const result = document.getElementById("result");
+
+  if(isNaN(age) || age < 0){
+    result.textContent = "Please enter a valid dog age.";
+    return;
+  }
+
+  let humanYears;
+  if(age <= 1){
+    humanYears = 15;
+  } else if(age <= 2){
+    humanYears = 24;
+  } else {
+    humanYears = 24 + ((age - 2) * 5);
+  }
+
+  result.textContent = "Estimated human age: " + Math.round(humanYears) + " years";
+}
+</script>
+
+</body>
+</html>
