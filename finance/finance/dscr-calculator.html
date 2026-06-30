@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSCR Calculator | Commercial Real Estate | Toolbox</title>
+<meta name="description" content="Free DSCR calculator for commercial real estate. Calculate debt service coverage ratio from NOI and annual debt service.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:1100px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
+h1,h2{color:#1565c0}.card{background:white;padding:22px;border-radius:10px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+input,button{padding:10px;margin:6px 0;width:100%;max-width:320px}
+button{background:#1565c0;color:white;border:none;border-radius:5px;cursor:pointer;font-weight:bold}
+.result{font-size:20px;font-weight:bold;margin-top:15px}a{color:#1565c0;font-weight:bold;text-decoration:none}.small{font-size:14px;color:#555}
+</style>
+</head>
+<body>
+
+<h1>DSCR Calculator</h1>
+<p>Calculate the debt service coverage ratio for a commercial real estate loan.</p>
+
+<div class="card">
+<h2>Calculator</h2>
+<div class="grid">
+<div>
+<label>Net operating income (NOI)</label><br>
+<input type="number" id="noi" value="500000">
+</div>
+<div>
+<label>Annual debt service</label><br>
+<input type="number" id="debt" value="375000">
+</div>
+</div>
+
+<button onclick="calculateDSCR()">Calculate DSCR</button>
+<div class="result" id="result"></div>
+<p id="details"></p>
+</div>
+
+<div class="card">
+<h2>How DSCR works</h2>
+<p>DSCR measures whether a property's net operating income is sufficient to cover annual loan payments. A DSCR above 1.00 means NOI exceeds debt service. Many lenders look for a DSCR above 1.20 or 1.25, depending on the property type, market, borrower, and loan structure.</p>
+<p><strong>Formula:</strong> DSCR = NOI / Annual Debt Service</p>
+<p class="small">This calculator is for preliminary analysis only and does not replace lender underwriting.</p>
+</div>
+
+<div class="card">
+<h2>Related commercial real estate tools</h2>
+<ul>
+<li><a href="cap-rate-calculator.html">Cap Rate Calculator</a></li>
+<li>Loan-to-Value Calculator - coming soon</li>
+<li>Debt Yield Calculator - coming soon</li>
+<li>Cash-on-Cash Return Calculator - coming soon</li>
+</ul>
+</div>
+
+<p><a href="index.html">← Back to Finance Tools</a></p>
+
+<script>
+function calculateDSCR(){
+  const noi = parseFloat(document.getElementById("noi").value) || 0;
+  const debt = parseFloat(document.getElementById("debt").value) || 0;
+
+  if(noi <= 0 || debt <= 0){
+    document.getElementById("result").textContent = "Please enter valid NOI and annual debt service.";
+    document.getElementById("details").textContent = "";
+    return;
+  }
+
+  const dscr = noi / debt;
+  let note = "";
+
+  if(dscr < 1){
+    note = "NOI is below annual debt service.";
+  } else if(dscr < 1.20){
+    note = "Coverage is positive but may be tight for many lenders.";
+  } else if(dscr < 1.50){
+    note = "Coverage may be acceptable depending on lender standards.";
+  } else {
+    note = "Coverage appears strong on a preliminary basis.";
+  }
+
+  document.getElementById("result").textContent = "DSCR: " + dscr.toFixed(2) + "x";
+  document.getElementById("details").innerHTML =
+    "NOI: $" + noi.toLocaleString() + "<br>" +
+    "Annual debt service: $" + debt.toLocaleString() + "<br>" +
+    note;
+}
+
+calculateDSCR();
+</script>
+
+</body>
+</html>
