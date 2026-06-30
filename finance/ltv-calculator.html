@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTV Calculator | Loan-to-Value | Toolbox</title>
+<meta name="description" content="Free loan-to-value calculator for real estate loans. Calculate LTV from loan amount and property value.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:1000px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
+.card{background:white;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h1,h2{color:#1565c0}
+input,button{padding:10px;margin:8px 0;width:100%;max-width:300px}
+button{background:#1565c0;color:white;border:none;border-radius:5px;cursor:pointer}
+.result{font-size:22px;font-weight:bold;margin-top:20px}
+a{color:#1565c0;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+
+<h1>Loan-to-Value Calculator</h1>
+<p>Calculate loan-to-value ratio for a real estate loan.</p>
+
+<div class="card">
+<label>Loan amount</label><br>
+<input id="loan" type="number" value="5000000">
+
+<label>Property value</label><br>
+<input id="value" type="number" value="7500000">
+
+<br>
+<button onclick="calculateLTV()">Calculate LTV</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<div class="card">
+<h2>What is LTV?</h2>
+<p>Loan-to-value ratio compares the loan amount to the value of the property. Lenders use LTV to evaluate leverage and risk.</p>
+<p><strong>Formula:</strong> LTV = Loan Amount ÷ Property Value</p>
+</div>
+
+<p><a href="index.html">← Back to Finance Tools</a></p>
+
+<script>
+function calculateLTV(){
+  const loan=parseFloat(document.getElementById("loan").value)||0;
+  const value=parseFloat(document.getElementById("value").value)||0;
+
+  if(loan<=0 || value<=0){
+    document.getElementById("result").textContent="Enter valid numbers.";
+    return;
+  }
+
+  const ltv=(loan/value)*100;
+  document.getElementById("result").textContent="LTV: " + ltv.toFixed(2) + "%";
+}
+calculateLTV();
+</script>
+
+</body>
+</html>
