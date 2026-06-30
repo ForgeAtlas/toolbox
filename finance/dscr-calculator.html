@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSCR Calculator | Toolbox</title>
+
+<style>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+    background:#f7f7f7;
+    color:#222;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin:20px 0;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+h1,h2{
+    color:#1565c0;
+}
+
+input,button{
+    padding:10px;
+    margin:8px 0;
+    width:100%;
+    max-width:300px;
+}
+
+button{
+    background:#1565c0;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.result{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+a{
+    color:#1565c0;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Debt Service Coverage Ratio (DSCR) Calculator</h1>
+
+<p>Calculate the debt service coverage ratio for an income-producing property.</p>
+
+<div class="card">
+
+<label>Annual Net Operating Income (NOI)</label><br>
+<input id="noi" type="number" value="500000">
+
+<label>Annual Debt Service</label><br>
+<input id="debt" type="number" value="400000">
+
+<br>
+
+<button onclick="calculateDSCR()">Calculate</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="card">
+
+<h2>What is DSCR?</h2>
+
+<p>
+Debt Service Coverage Ratio measures how comfortably a property's net operating income
+covers its annual mortgage payments.
+</p>
+
+<p>
+
+<strong>Formula:</strong>
+
+DSCR = NOI ÷ Annual Debt Service
+
+</p>
+
+</div>
+
+<p>
+
+<a href="index.html">← Back to Finance Tools</a>
+
+</p>
+
+<script>
+
+function calculateDSCR(){
+
+let noi=parseFloat(document.getElementById("noi").value);
+
+let debt=parseFloat(document.getElementById("debt").value);
+
+if(noi<=0 || debt<=0){
+
+document.getElementById("result").innerHTML="Enter valid numbers.";
+
+return;
+
+}
+
+let dscr=noi/debt;
+
+let message="";
+
+if(dscr<1){
+
+message="Property does NOT cover its debt service.";
+
+}
+
+else if(dscr<1.20){
+
+message="Coverage is weak.";
+
+}
+
+else if(dscr<1.40){
+
+message="Coverage is acceptable for many lenders.";
+
+}
+
+else{
+
+message="Coverage appears strong.";
+
+}
+
+document.getElementById("result").innerHTML=
+
+"DSCR = <strong>"+dscr.toFixed(2)+"x</strong><br><br>"+message;
+
+}
+
+calculateDSCR();
+
+</script>
+
+</body>
+</html>
