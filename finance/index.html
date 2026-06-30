@@ -3,145 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mortgage Payment Calculator | Toolbox</title>
-<meta name="description" content="Free mortgage payment calculator with principal, interest, taxes, insurance, PMI, HOA fees, total monthly payment, and total interest estimate.">
+<title>Finance Tools | Free Calculators for Loans, Mortgages, and Commercial Real Estate</title>
+<meta name="description" content="Free finance calculators for mortgages, loans, compound interest, credit cards, and commercial real estate including cap rate and DSCR.">
 <style>
 body{font-family:Arial,Helvetica,sans-serif;max-width:1100px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
-h1,h2{color:#1565c0}
-.card{background:#fff;padding:22px;border-radius:10px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h1{color:#1565c0}.card{background:white;padding:22px;border-radius:10px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-input,button{padding:10px;margin:6px 0;width:100%;max-width:320px}
-button{background:#1565c0;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:bold}
-.result{font-size:20px;font-weight:bold;margin-top:15px}
-.small{font-size:14px;color:#555}
-a{color:#1565c0;font-weight:bold;text-decoration:none}
+a{color:#1565c0;font-weight:bold;text-decoration:none}.badge{display:inline-block;background:#e3f2fd;color:#1565c0;padding:5px 9px;border-radius:20px;font-size:13px;margin-bottom:8px}
 </style>
 </head>
 <body>
 
-<h1>Mortgage Payment Calculator</h1>
-<p>Estimate your monthly mortgage payment including principal, interest, property taxes, insurance, PMI, and HOA fees.</p>
+<h1>Finance Tools</h1>
 
-<div class="card">
-<h2>Calculator</h2>
+<p>Free calculators for mortgages, loans, savings, interest, credit cards, and commercial real estate.</p>
 
 <div class="grid">
-<div>
-<label>Home price</label><br>
-<input type="number" id="price" value="500000">
-</div>
 
-<div>
-<label>Down payment</label><br>
-<input type="number" id="down" value="100000">
-</div>
-
-<div>
-<label>Interest rate (%)</label><br>
-<input type="number" id="rate" value="6.5" step="0.01">
-</div>
-
-<div>
-<label>Loan term (years)</label><br>
-<input type="number" id="years" value="30">
-</div>
-
-<div>
-<label>Annual property tax</label><br>
-<input type="number" id="tax" value="6000">
-</div>
-
-<div>
-<label>Annual insurance</label><br>
-<input type="number" id="insurance" value="1800">
-</div>
-
-<div>
-<label>Monthly PMI</label><br>
-<input type="number" id="pmi" value="0">
-</div>
-
-<div>
-<label>Monthly HOA</label><br>
-<input type="number" id="hoa" value="0">
-</div>
-</div>
-
-<button onclick="calculateMortgage()">Calculate Payment</button>
-
-<div class="result" id="monthly"></div>
-<p id="details"></p>
+<div class="card">
+<span class="badge">Live</span>
+<h2>Mortgage Payment Calculator</h2>
+<p>Estimate monthly mortgage payments, principal and interest, taxes, insurance, and total cost.</p>
+<p><a href="mortgage-payment-calculator.html">Open Mortgage Calculator →</a></p>
 </div>
 
 <div class="card">
-<h2>How this calculator works</h2>
-<p>This calculator estimates the monthly mortgage payment using the loan amount, interest rate, and loan term. It also adds estimated monthly property taxes, insurance, PMI, and HOA fees to show a more complete monthly housing cost.</p>
-<p class="small">This is an estimate only. Actual mortgage payments can vary based on lender terms, taxes, insurance, escrow requirements, closing costs, and other fees.</p>
+<h2>Commercial Real Estate Tools</h2>
+<p>Cap rate, DSCR, LTV, debt yield, bridge loan cost, and other real estate finance calculators.</p>
+<p><a href="cap-rate-calculator.html">Cap Rate Calculator →</a></p>
+<p><a href="dscr-calculator.html">DSCR Calculator →</a></p>
+<p>Loan-to-Value Calculator - coming soon</p>
+<p>Debt Yield Calculator - coming soon</p>
 </div>
 
 <div class="card">
-<h2>Related finance tools</h2>
-<ul>
-<li><a href="index.html">Finance Tools</a></li>
-<li>Loan Payment Calculator - coming soon</li>
-<li>Compound Interest Calculator - coming soon</li>
-<li>Commercial Real Estate Tools - coming soon</li>
-</ul>
+<h2>Loan Payment Calculator</h2>
+<p>Estimate monthly payments for personal loans, business loans, and other fixed-payment debt.</p>
+<p>Coming soon</p>
 </div>
 
-<p><a href="index.html">← Back to Finance Tools</a></p>
+<div class="card">
+<h2>Compound Interest Calculator</h2>
+<p>See how savings or investments can grow over time with compound interest.</p>
+<p>Coming soon</p>
+</div>
 
-<script>
-function money(n){
-  return "$" + Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
-}
+<div class="card">
+<h2>Credit Card Payoff Calculator</h2>
+<p>Estimate how long it may take to pay off credit card debt and how much interest you may pay.</p>
+<p>Coming soon</p>
+</div>
 
-function calculateMortgage(){
-  const price = parseFloat(document.getElementById("price").value) || 0;
-  const down = parseFloat(document.getElementById("down").value) || 0;
-  const rate = parseFloat(document.getElementById("rate").value) || 0;
-  const years = parseFloat(document.getElementById("years").value) || 0;
-  const tax = parseFloat(document.getElementById("tax").value) || 0;
-  const insurance = parseFloat(document.getElementById("insurance").value) || 0;
-  const pmi = parseFloat(document.getElementById("pmi").value) || 0;
-  const hoa = parseFloat(document.getElementById("hoa").value) || 0;
+</div>
 
-  const loan = price - down;
-  const months = years * 12;
-  const monthlyRate = rate / 100 / 12;
+<div class="card">
+<h2>Why these calculators matter</h2>
+<p>Small changes in interest rates, loan terms, fees, repayment schedules, NOI, cap rates, and debt service can have a major impact on financial decisions. These tools are designed to help users estimate numbers quickly before making a decision.</p>
+</div>
 
-  if(loan <= 0 || months <= 0){
-    document.getElementById("monthly").textContent = "Please enter a valid home price, down payment, and loan term.";
-    document.getElementById("details").textContent = "";
-    return;
-  }
-
-  let principalInterest;
-
-  if(monthlyRate === 0){
-    principalInterest = loan / months;
-  } else {
-    principalInterest = loan * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-  }
-
-  const monthlyTax = tax / 12;
-  const monthlyInsurance = insurance / 12;
-  const totalMonthly = principalInterest + monthlyTax + monthlyInsurance + pmi + hoa;
-  const totalInterest = (principalInterest * months) - loan;
-
-  document.getElementById("monthly").textContent = "Estimated monthly payment: " + money(totalMonthly);
-  document.getElementById("details").innerHTML =
-    "Loan amount: " + money(loan) + "<br>" +
-    "Principal & interest: " + money(principalInterest) + "<br>" +
-    "Monthly taxes: " + money(monthlyTax) + "<br>" +
-    "Monthly insurance: " + money(monthlyInsurance) + "<br>" +
-    "PMI: " + money(pmi) + "<br>" +
-    "HOA: " + money(hoa) + "<br>" +
-    "Estimated total interest: " + money(totalInterest);
-}
-
-calculateMortgage();
-</script>
+<p><a href="../index.html">← Back to Toolbox</a></p>
 
 </body>
 </html>
