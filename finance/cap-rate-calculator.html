@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap Rate Calculator | Commercial Real Estate | Toolbox</title>
+<meta name="description" content="Free cap rate calculator for commercial real estate. Calculate cap rate from NOI and property value, or estimate value from NOI and target cap rate.">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:1100px;margin:40px auto;padding:20px;background:#f7f7f7;color:#222}
+h1,h2{color:#1565c0}
+.card{background:white;padding:22px;border-radius:10px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+input,button{padding:10px;margin:6px 0;width:100%;max-width:320px}
+button{background:#1565c0;color:white;border:none;border-radius:5px;cursor:pointer;font-weight:bold}
+.result{font-size:20px;font-weight:bold;margin-top:15px}
+.small{font-size:14px;color:#555}
+a{color:#1565c0;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+
+<h1>Cap Rate Calculator</h1>
+<p>Calculate a commercial real estate capitalization rate from net operating income and property value.</p>
+
+<div class="card">
+<h2>Calculator</h2>
+
+<div class="grid">
+<div>
+<label>Net operating income (NOI)</label><br>
+<input type="number" id="noi" value="500000">
+</div>
+
+<div>
+<label>Property value or purchase price</label><br>
+<input type="number" id="value" value="7500000">
+</div>
+
+<div>
+<label>Target cap rate (%)</label><br>
+<input type="number" id="targetCap" value="6.5" step="0.01">
+</div>
+</div>
+
+<button onclick="calculateCapRate()">Calculate</button>
+
+<div class="result" id="capResult"></div>
+<p id="details"></p>
+</div>
+
+<div class="card">
+<h2>How cap rate works</h2>
+<p>Cap rate is calculated by dividing annual net operating income by property value. It is one of the most common ways to compare income-producing real estate investments.</p>
+<p><strong>Formula:</strong> Cap Rate = NOI / Property Value</p>
+<p class="small">This calculator is for educational and preliminary analysis only. It does not account for financing, capital expenditures, reserves, leasing risk, tenant credit, or changes in market conditions.</p>
+</div>
+
+<div class="card">
+<h2>Related commercial real estate tools</h2>
+<ul>
+<li>DSCR Calculator - coming soon</li>
+<li>Loan-to-Value Calculator - coming soon</li>
+<li>Debt Yield Calculator - coming soon</li>
+<li>Cash-on-Cash Return Calculator - coming soon</li>
+</ul>
+</div>
+
+<p><a href="index.html">← Back to Finance Tools</a></p>
+
+<script>
+function money(n){
+  return "$" + Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
+}
+
+function calculateCapRate(){
+  const noi = parseFloat(document.getElementById("noi").value) || 0;
+  const value = parseFloat(document.getElementById("value").value) || 0;
+  const targetCap = parseFloat(document.getElementById("targetCap").value) || 0;
+
+  if(noi <= 0 || value <= 0){
+    document.getElementById("capResult").textContent = "Please enter valid NOI and property value.";
+    document.getElementById("details").textContent = "";
+    return;
+  }
+
+  const capRate = (noi / value) * 100;
+  const impliedValue = targetCap > 0 ? noi / (targetCap / 100) : 0;
+
+  document.getElementById("capResult").textContent = "Cap rate: " + capRate.toFixed(2) + "%";
+  document.getElementById("details").innerHTML =
+    "NOI: " + money(noi) + "<br>" +
+    "Property value: " + money(value) + "<br>" +
+    "Implied value at " + targetCap.toFixed(2) + "% cap rate: " + money(impliedValue);
+}
+
+calculateCapRate();
+</script>
+
+</body>
+</html>
